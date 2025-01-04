@@ -10,6 +10,9 @@ bafapp = Flask(__name__)
 mp_drawing = mp.solutions.drawing_utils
 mp_pose = mp.solutions.pose
 
+# Initialize pose model globally
+pose = mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5)
+
 # Function to calculate the angle between three points (shoulder, elbow, and hip)
 def calculate_angle(a, b, c):
     a = np.array(a)  # Point A (shoulder)
@@ -34,7 +37,7 @@ def calculate_angle(a, b, c):
 # Home route to render the index page (if using HTML frontend)
 @bafapp.route('/')
 def home():
-    return "Welcome to the Posture Detection App!"  # Renders index.html page in your templates folder
+    return "Welcome to the Posture Detection App!"  # You can replace this with render_template('index.html')
 
 # Endpoint to process video frames (for posture detection)
 @bafapp.route('/process_frame', methods=['POST'])
@@ -58,8 +61,6 @@ def process_frame():
     image_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     image_rgb.flags.writeable = False
 
-    # Initialize pose model
-    pose = mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5)
     results = pose.process(image_rgb)
 
     try:
