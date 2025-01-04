@@ -4,7 +4,7 @@ import mediapipe as mp
 import numpy as np
 
 # Initialize Flask app
-app = Flask(__name__)
+bafapp = Flask(__name__)
 
 # Initialize MediaPipe Pose module
 mp_drawing = mp.solutions.drawing_utils
