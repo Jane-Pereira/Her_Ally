@@ -32,12 +32,12 @@ def calculate_angle(a, b, c):
     return angle
 
 # Home route to render the index page (if using HTML frontend)
-@app.route('/')
+@bafapp.route('/')
 def home():
     return "Welcome to the Posture Detection App!"  # Renders index.html page in your templates folder
 
 # Endpoint to process video frames (for posture detection)
-@app.route('/process_frame', methods=['POST'])
+@bafapp.route('/process_frame', methods=['POST'])
 def process_frame():
     # Check if a file is included in the request
     if 'file' not in request.files:
