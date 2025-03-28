@@ -1,1 +1,2 @@
-gunicorn bafapp:bafapp
+gunicorn app:app
+
