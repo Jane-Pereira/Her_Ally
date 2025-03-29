@@ -1,4 +1,4 @@
-from flask import Flask, Response, render_template
+from flask import Flask, Response
 import cv2
 import mediapipe as mp
 import numpy as np
@@ -140,4 +140,3 @@ def start_exercise():
 
 if __name__ == '__main__':
     app.run(debug=True)
- 
